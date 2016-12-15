@@ -32,7 +32,7 @@ void Random()
 		
 	
 	
-	// printf ("%d " ,  zagadannoe_chislo [i] ) ;	 
+	 // printf ("%d " ,  zagadannoe_chislo [i] ) ;	 - Это строка для теста что все числа разные. Алгоритм работает нормально
 		
 	}
 		

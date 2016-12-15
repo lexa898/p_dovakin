@@ -19,7 +19,7 @@ printf ("ќтгадайте задуманное число , введите цифры от 0 до 9 **** \n");
 int chek=0; 
 while (chek==0)
 {
-
+printf ("¬ведите цифры от 0 до 9\n");
 scanf ("%d%d%d%d",&a1,&a2,&a3,&a4);
 
 int sum=0;  // блок кода , проверка на быков и коровок
@@ -39,7 +39,7 @@ int sum2=0;
          chek=1;
         }
 	else
-	printf ("%d быка\n", sum);
+	printf ("\n%d быка\n", sum);
 	
     if(a2== zagadannoe_chislo[1]||a3== zagadannoe_chislo[1]||a4 == zagadannoe_chislo[1])
      	sum2++;
@@ -51,7 +51,7 @@ int sum2=0;
      	sum2++;
      	
 		 if (chek==0)		
-     	printf ("%d коров", sum2);
+     	printf ("%d коров\n", sum2);
        	
 
 }
