@@ -5,69 +5,111 @@
 #include "customrandom.h"
 #include <iostream>
 using namespace std;
+
+int array[4];
+void proverka()
+{
+	int count = 0;bool flag;
+	printf ("Введите цифры от 0 до 9\n");
+	do
+	{
+		flag = false;
+		int prov;
+		for (int i = count; i < 4; ++i) // Заполнение массива
+		 {
+		  int num = 0;
+		  std::cin >> num;
+		  array[i] = num;
+		 }
+		for (int i=count; i<4; i++) 
+		{   
+			count=i;// сохраняем индекс последнего обработаного элемента
+			if(array[i]<=9&&array[i]>=0)
+			{
+				
+				for (int j=0; j<i; j++)	
+				{
+					if(array[i]==array[j]) // нашли первый повторяющийся элемент
+					{
+						flag=true;
+						break;
+					}
+				}
+				if(flag) break;		
+			}
+			else 
+			{
+				printf("\nСерьёзно? От 0 до 9 Карл!!\n");
+				flag=true;
+				break;
+			}
+		}	
+		
+		if(flag) // если нашли повторяющийся элемент
+		{
+			printf("\nНе надо так\n");
+			for(int i=0;i<count;i++)
+			{
+				printf("%d ",array[i]);
+			}
+		}
+	}while(flag==true);
+	
+}
+	
+
+
 int main() 
 {
 	char c;
-setlocale(LC_ALL,"rus");
-while (1)
-  { system("cls");
-    puts("  1 - Играть");
-    puts("  2 - Описание и инструкция к игре");
-    puts("  3 - Выход");
-    c=getch();
-    switch(c)
-    { case '1': {
+	setlocale(LC_ALL,"rus");
+	while (1)
+	  { system("cls");
+	    puts("  1 - Играть");
+	    puts("  2 - Описание и инструкция к игре");
+	    puts("  3 - Выход");
+	    c=getch();
+	    switch(c)
+	    { case '1': {
 
-   Random();
- 
-int a1=0,a2=0,a3=0,a4=0;
-printf ("Отгадайте задуманное число , введите цифры от 0 до 9 **** \n");
+  			Random();
+ 			printf ("Отгадайте задуманное число \n");		
+			int repeat=0;
+			int chek=0; 
 
-int repeat=0;
-
-int chek=0; 
 while (chek==0)
 {
-printf ("Введите цифры от 0 до 9\n");
-scanf ("%d%d%d%d",&a1,&a2,&a3,&a4);
-
-
-printf ("\n");
-
-repeat++;
-int sum=0;  // блок кода , проверка на быков и коровок
-int sum2=0;
-
-	if (a1==zagadannoe_chislo[0]) 
-	   sum++;
-	if  (a2==zagadannoe_chislo[1]) 
-	   sum++;
-    if  (a3==zagadannoe_chislo[2]) 
-	   sum++;   
-    if  (a4==zagadannoe_chislo[3]) 
-	   sum++; 
-	if (sum==4)
-    	{
-	     printf ("вы отгадали, число попыток %d", repeat);
+	proverka();
+	printf ("\n");
+	repeat++;
+	int sum=0;  // блок кода , проверка на быков и коровок
+	int sum2=0;
+	for(int i=0;i<4;i++)
+	{
+		if (array[i]==zagadannoe_chislo[i]) // проверка быков
+	   	sum++;
+	   	else
+		{
+			for(int j=0;j<4;j++)
+    			if(i!=j&&zagadannoe_chislo[i]==array[j])
+				{
+     				sum2++;
+     				break;
+     			}		
+     	}
+ 	}
+ 	if (sum==4)
+    {
+	     printf ("Вы отгадали, число попыток %d", repeat);
          chek=1;
          getch();
-        }
-	else
-	printf ("\n%d быка\n", sum);
-	
-    if(a2== zagadannoe_chislo[0]||a3== zagadannoe_chislo[0]||a4 == zagadannoe_chislo[0])
-     	sum2++;
-    if(a1== zagadannoe_chislo[1]||a3== zagadannoe_chislo[1]||a4 == zagadannoe_chislo[1]) 
-     	sum2++;
-    if(a1== zagadannoe_chislo[2]||a2== zagadannoe_chislo[2]||a4 == zagadannoe_chislo[2])
-     	sum2++;
-    if(a1== zagadannoe_chislo[3]||a2== zagadannoe_chislo[3]||a3== zagadannoe_chislo[3])
-     	sum2++;
-     	
-		 if (chek==0)		
-     	printf ("%d коров\n", sum2);
-     	
-}
+    }
+    else
+    {
+    printf ("%d корова\n", sum2);
+	printf ("%d бык\n\n", sum);
+	}
+		}
 break;
      	return(0);
      	getch();
@@ -87,7 +129,6 @@ break;
 return 0;
 }
   
-
 
 
 
